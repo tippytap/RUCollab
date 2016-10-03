@@ -34,4 +34,5 @@ Membership - groupid, userid
 Groups - groupId, groupPageUrl, formedDate, project leader
 Messages - msgId, member, groupId, timestamp, msgString
 Tasks - taskid, userid, groupid, timestamp, task string, due date
-Assignments - assigned user, task id
+// Assignments - assignmentId, userId, task id // may not need this
+Use Laravel framework
