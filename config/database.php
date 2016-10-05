@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'erik'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,10 +55,27 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '3306'),
+            'port' => env('DB_PORT', '8889'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
+        ],
+
+        // env(...) methods look at the .env file in your directory. You may not have it because it's not checked
+        // into Git. In that case, just fill in the blanks for the second argument with details for your computer.
+        // I usually don't worry about the other things in the array, just driver, host, port, database, username, and password
+        'erik' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '8889'),
+            'database' => env('DB_DATABASE', 'rucollab'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', 'root'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
