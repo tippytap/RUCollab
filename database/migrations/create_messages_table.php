@@ -18,7 +18,6 @@ class CreateMessagesTable extends Migration
             $table->string('message_string');
             
             /** keys */
-            $table->primary('message_id');
             $table->foreign('user_id')
             ->references('user_id')->on('users')
             ->onDelete('cascade');

@@ -12,11 +12,13 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('task_id');
-            $table->boolean('completed');
+            $table->boolean('is_completed');
             $table->dateTime('time_created');
             $table->string('time_completed');
             $table->string('task_string');
             $table->date('due_date');
+            
+         
         });
     }
     /**
