@@ -12,8 +12,11 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('group_id');
-            $table->integer('group_leader');
+            $table->integer('group_leader_id');
             $table->date('formed_date');
+            $table->foreign('group_leader_id')
+            ->references('user_id')->on('users')
+            ->onDelete('cascade');
         });
     }
     /**
