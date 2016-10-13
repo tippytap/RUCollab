@@ -1,6 +1,8 @@
 <?php
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+
 class CreateTasksTable extends Migration
 {
     /**
@@ -11,16 +13,15 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('task_id');
+            $table->increments('task_id')->unsigned();
             $table->boolean('is_completed');
             $table->dateTime('time_created');
             $table->string('time_completed');
             $table->string('task_string');
             $table->date('due_date');
-            
-         
         });
     }
+
     /**
      * Reverse the migrations.
      *
