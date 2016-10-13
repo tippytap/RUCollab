@@ -18,8 +18,7 @@ class CreateTasksTable extends Migration
             $table->string('task_string');
             $table->date('due_date');
             
-            /** keys */
-            $table->primary('task_id');
+         
         });
     }
     /**
