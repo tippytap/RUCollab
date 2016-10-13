@@ -14,8 +14,17 @@ class CreateMessagesTable extends Migration
             $table->increments('message_id');
             $table->increments('user_id');
             $table->increments('group_id');
-            $table->dateTime('created_at');
+            $table->dateTime('time_created');
             $table->string('message_string');
+            
+            /** keys */
+            $table->primary('message_id');
+            $table->foreign('user_id')
+            ->references('user_id')->on('users')
+            ->onDelete('cascade');
+            $table->foreign('group_id')
+            ->references('group_id')->on('groups')
+            ->onDelete('cascade');
 
         });
     }

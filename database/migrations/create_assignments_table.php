@@ -13,6 +13,15 @@ class CreateAssignmentsTable extends Migration
         Schema::create('assignments', function (Blueprint $table) {
             $table->increments('user_id');
             $table->increments('task_id');
+            
+            /** keys */
+            $table->primary(['user_id', 'task_id']);
+            $table->foreign('user_id')
+            ->references('user_id')->on('users')
+            ->onDelete('cascade');
+            $table->foreign('task_id')
+            ->references('task_id')->on('tasks')
+            ->onDelete('cascade');
 
         });
     }
