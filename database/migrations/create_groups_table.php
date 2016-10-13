@@ -14,6 +14,7 @@ class CreateGroupsTable extends Migration
             $table->increments('group_id');
             $table->integer('group_leader_id');
             $table->date('formed_date');
+            $table->string('group_name');
             
             /** keys */
             $table->primary('group_id');
