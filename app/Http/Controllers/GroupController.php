@@ -42,7 +42,6 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
     /**
      * Show the form for editing the specified resource.
@@ -50,9 +49,9 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id = false)
     {
-        //
+        return view('groups.edit');
     }
 
     /**

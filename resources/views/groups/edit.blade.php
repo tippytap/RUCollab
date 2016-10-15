@@ -8,9 +8,9 @@
                     <div class="panel-heading">Create a group!</div>
 
                     <div class="panel-body">
-                        <a href="{{ url('group') }}"><- back</a>
+                        <a href="{{ url('group') }}"><i class="fa fa-arrow-left">&nbsp;</i>back</a>
                         <br/>
-                        Here you will enter group information
+                        <h3>Update group information</h3>
                         <form class="form" id="create-group" method="POST" action="{{ url('group') }}">
                             <div class="row">
                                 <div class="col-xs-12">
@@ -24,10 +24,23 @@
                                     <textarea class="form-control" id="description" name="description"></textarea>
                                     <br/>
                                 </div>
+                                <div class="col-xs-12">
+                                    <label for="invite-1">Invite member: </label>
+                                    <input class="form-control col-xs-9" type="text" id="invite-1" name="invite-1" placeholder="example@email.com" />
+                                    <button id="invite-btn" class="col-xs-3 btn btn-default">Send invitation</button>
+                                    <br/>
+                                </div>
+                                <div class="col-xs-12">
+                                    <button class="btn btn-default">
+                                        <i class="fa fa-plus">&nbsp;</i>Add another member
+                                    </button>&nbsp;
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-save">&nbsp;</i>Update group
+                                    </button>
+                                </div>
+                                <div class="col-xs-12">
+                                </div>
                             </div>
-                            <button class="btn btn-success" type="submit">
-                                <i class="fa fa-plus">&nbsp;</i>Create Group
-                            </button>
                         </form>
                     </div>
                 </div>

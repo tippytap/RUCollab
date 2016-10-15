@@ -19,14 +19,12 @@ Route::group(['middleware' => 'web'], function(){
 
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
-
     Route::resource('group', 'GroupController');
 
-	Route::get('/user_edit', 'UserController@edit');
+	Route::get('/user_edit', 'UserController@userEdit');
 	
-	Route::delete('/user_delete', 'UserController@delete');
+	Route::get('/user_delete', 'UserController@userDelete');
 	
-	Route::get('/index', 'UserController@index');
+	Route::get('/dashboard', 'UserController@index');
 
 });
