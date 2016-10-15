@@ -23,4 +23,10 @@ Route::group(['middleware' => 'web'], function(){
 
     Route::resource('group', 'GroupController');
 
+	Route::get('/user_edit', 'UserController@edit');
+	
+	Route::delete('/user_delete', 'UserController@delete');
+	
+	Route::get('/index', 'UserController@index');
+
 });
