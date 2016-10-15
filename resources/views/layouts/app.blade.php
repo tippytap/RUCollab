@@ -48,7 +48,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/dashboard') }}">Home</a></li>
-                    <li><a href="{{ url('/group') }}">Create a group</a></li>
+                    <li><a href="{{ url('/group/create') }}">Create a group</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
