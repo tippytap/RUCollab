@@ -8,7 +8,6 @@
                     <div class="panel-heading">Create a group!</div>
 
                     <div class="panel-body">
-                        <a href="{{ url('group') }}"><- back</a>
                         <br/>
                         Here you will enter group information
                         <form class="form" id="create-group" method="POST" action="{{ url('group') }}">

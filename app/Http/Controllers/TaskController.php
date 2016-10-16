@@ -6,14 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class GroupController extends Controller
+class TaskController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +15,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('groups.home');
+        //
     }
 
     /**
@@ -31,7 +25,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('groups.create');
+        //
     }
 
     /**
@@ -42,16 +36,29 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id = false)
+    public function edit($id)
     {
-        return view('groups.edit');
+        //
     }
 
     /**
