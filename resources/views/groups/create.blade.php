@@ -8,7 +8,6 @@
                     <div class="panel-heading">Create a group!</div>
 
                     <div class="panel-body">
-                        <a href="{{ url('group') }}"><- back</a>
                         <br/>
                         Here you will enter group information
                         <form class="form" id="create-group" method="POST" action="{{ url('group') }}">
@@ -24,13 +23,10 @@
                                     <textarea class="form-control" id="description" name="description"></textarea>
                                     <br/>
                                 </div>
-                                <div class="col-xs-12">
-                                    <label for="invite-1">Invite member: </label>
-                                    <input class="form-control" type="text" id="invite-1" name="invite-1" placeholder="example@email.com" />
-                                    <br/>
-                                    <button class="btn btn-default">Add another member</button>
-                                </div>
                             </div>
+                            <button class="btn btn-success" type="submit">
+                                <i class="fa fa-plus">&nbsp;</i>Create Group
+                            </button>
                         </form>
                     </div>
                 </div>
