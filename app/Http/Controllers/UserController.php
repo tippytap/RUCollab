@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \
+     * @return View
      */
     public function index()
     {
@@ -29,25 +30,38 @@ class UserController extends Controller
 	/**
 	* Show the page to edit user information
 	*
-	* @reutn \
+	* @return View
 	*/
-	public function userEdit()
+	public function userEdit(Request $request, $userId)
     {
-        return view('userViews.user_edit');
+        $user = User::find($userId);
+        return view('userViews.user_edit', ['user' => $user]);
     }
 	/**
 	* Show the page to edit user information
 	*
-	* @reutn \
+	* @return View
 	*/
 	public function userDelete()
     {
         return view('userViews.user_delete');
     }
+
+    /**
+     * Finds the user and destroys it
+     *
+     * @return Redirect
+     */
+    public function userDestroy(Request $request, $userId)
+    {
+        User::destroy($userId);
+        return redirect('/');
+    }
+
 	/**
 	* Show the page to edit user information
 	*
-	* @reutn \
+	* @return View
 	*/
 	public function home()
     {
