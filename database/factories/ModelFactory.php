@@ -19,3 +19,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Membership::class, function(Faker\Generator $faker){
+    return [
+        'user_id' => function(){
+            return factory(App\User::class)->create()->id;
+        },
+        'group_id' => function(){
+            return factory(App\User::class)->create()->group_id;
+        }
+    ];
+});
+
+$factory->define(App\Group::class, function(Faker\Generator $faker){
+    return [
+        'group_leader_id' => 1,
+    ];
+});
