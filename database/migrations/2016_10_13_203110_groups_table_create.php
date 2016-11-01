@@ -13,8 +13,8 @@ class GroupsTableCreate extends Migration
     public function up()
     {
         Schema::create('groups', function (Blueprint $table) {
-            $table->increments('group_id')->unsigned();
-            $table->integer('group_leader_id')->unsigned();
+            $table->increments('id')->unsigned();
+            $table->integer('group_leader_id')->unsigned()->nullable();
             $table->date('formed_date');
             $table->string('group_name');
         });

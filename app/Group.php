@@ -11,6 +11,8 @@ class Group extends Model
      */
     protected $fillable = ['url', 'group_leader_id'];
 
+    public $timestamps = false;
+
     /**
      * Returns the User models associated with this Group instance
      * that are related through the memberships table
@@ -20,4 +22,5 @@ class Group extends Model
     public function membership(){
         return $this->hasManyThrough('App\User', 'App\Membership');
     }
+
 }
