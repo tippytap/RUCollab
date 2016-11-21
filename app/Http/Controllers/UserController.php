@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
+use App\Membership;
+use App\Group;
 
 class UserController extends Controller
 {
@@ -23,9 +25,16 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function index()
-    {
-        return view('userViews.index');
+    public function index(Request $request)
+    {		
+		$user = $request->user();
+		$userId = $user->id;
+		$groups = [];
+		foreach($user->membership as $group){
+			$group = Group::find($group->group_id);
+			$groups[] = $group;
+		}
+		return view('userViews.index', ['groups'=>$groups]);
     }
 	/**
 	* Show the page to edit user information
@@ -67,4 +76,5 @@ class UserController extends Controller
     {
         return view('userViews.home');
     }
+	
 }
