@@ -9,7 +9,7 @@ class Group extends Model
     /**
      * These are the fields we can allow a user to insert into the DB
      */
-    protected $fillable = ['url', 'group_leader_id'];
+    protected $fillable = ['url', 'group_name', 'group_leader_id'];
 
     public $timestamps = false;
 
@@ -20,7 +20,7 @@ class Group extends Model
      * @return Array
      */
     public function membership(){
-        return $this->hasManyThrough('App\User', 'App\Membership');
+        return $this->hasMany('App\Membership');
     }
 
 }

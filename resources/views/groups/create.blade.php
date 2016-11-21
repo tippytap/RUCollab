@@ -11,6 +11,8 @@
                         <br/>
                         Here you will enter group information
                         <form class="form" id="create-group" method="POST" action="{{ url('group') }}">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="user" value="{{ Auth::user()->id }}"/>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <br/>

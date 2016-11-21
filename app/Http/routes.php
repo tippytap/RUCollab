@@ -29,4 +29,6 @@ Route::group(['middleware' => 'web'], function(){
 	
 	Route::get('/dashboard', 'UserController@index');
 
+    Route::get('/hasMany/{groupId}', 'GroupController@hasMany');
+
 });
