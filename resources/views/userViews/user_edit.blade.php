@@ -1,43 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-#form {
-    background-color: #FFF;
-    height: 600px;
-    width: 600px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 0px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 0px;
-    text-align:center;
-}
-label {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 18px;
-    color: #333;
-    height: 20px;
-    width: 200px;
-    margin-top: 10px;
-    margin-left: 10px;
-    text-align: right;
-    clear: both;
-    float:left;
-    margin-right:15px;
-}
-input {
-    height: 20px;
-    width: 300px;
-    border: 1px solid #000;
-    margin-top: 10px;
-    float: left;
-}
-input[type=button] {
-    float:none;
-}
-    </style>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -45,24 +8,34 @@ input[type=button] {
                 <div class="panel-heading">Edit user information</div>
                 <div class="panel-body">
 					<div id="form">
-						<form action="" method="post" name="registration" class="register">
+						<form action="" method="post" name="" class="form">
 							<fieldset>
-								<label for="Student">Name:</label>
-								<input name="Student" />
-								<label for="Phone_Number">Phone number:</label>
-								<input name="Phone_Number" />
-								<label for="Email">Email:</label>
-								<input name="Email" />
-								<label for="Username">Username:</label>
-								<input name="Username" />
-								<label for="Password">Password:</label>
-								<input name="Password" type="password" />
+                                <div>
+                                    <label for="Student">Name:</label>
+                                    <input name="Student" class="form-control" placeholder="{{ $user->name }}" />
+                                </div>
+                                <div>
+                                    <br/>
+                                    <label for="Phone_Number">Phone number:</label>
+                                    <input name="Phone_Number" class="form-control" placeholder="" />
+                                </div>
+                                <div>
+                                    <br/>
+                                    <label for="Email">Email:</label>
+                                    <input name="Email" class="form-control" placeholder="{{ $user->email }}" />
+                                </div>
 							</fieldset>
-								{{--<input name="delbutton" type="button" class="button" value="Delete Account" />--}}
-                            <button type="submit" name="regbutton" type="button" class="btn btn-primary">Update Information</button>
+                            <br/>
+                            <button type="submit" name="regbutton" type="button" class="btn btn-primary">
+                                <i class="fa fa-save">&nbsp;</i>
+                                Update Information
+                            </button>
 						</form>
                         <br/>
-                        <a href="{{ url('/user_delete') }}" class="btn btn-danger">Delete Account</a>
+                        <a href="{{ url('/user_delete') }}" class="btn btn-danger">
+                            <i class="fa fa-trash">&nbsp;</i>
+                            Delete Account
+                        </a>
 					</div>
                 </div>
             </div>

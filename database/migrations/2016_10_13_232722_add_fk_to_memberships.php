@@ -14,7 +14,7 @@ class AddFkToMemberships extends Migration
     {
         Schema::table('memberships', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('group_id')->references('group_id')->on('groups');
+            $table->foreign('group_id')->references('id')->on('groups');
         });
     }
 
