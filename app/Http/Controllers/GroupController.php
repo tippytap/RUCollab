@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Group;
+use App\Membership;
+use App\User;
+
 class GroupController extends Controller
 {
 
@@ -42,7 +46,27 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+        $groupName = $request->input('group-name');
+        $user = User::find($request->input('user'));
+        $group = Group::create([
+            'group_name' => $groupName,
+            'formed_date' => time()
+        ]);
+        $membership = Membership::create([
+            'user_id' => $user->getAttribute('id'),
+            'group_id' => $group->getAttribute('id')
+        ]);
+        $group->update(['group_leader_id' => $membership->getAttribute('user_id')]);
+
+//        return redirect('/dashboard');
     }
+
+    public function hasMany(Request $request, $groupId){
+        $group = Group::find($groupId);
+        echo $group->membership()->where('user_id', 1)->get();
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
