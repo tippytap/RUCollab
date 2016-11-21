@@ -8,7 +8,30 @@
                     <div class="panel-heading">Groups Dashboard</div>
 
                     <div class="panel-body">
-                        Here will be all the group info: messages, tasks, due dates, and the calendar
+                        <table style="width:33%; float:left; top:0; bottom:0; left:100; right:0; border:0px">
+						<tr style="height:10%;">
+							<td>Calendar</td>
+						</tr>
+						<tr>
+							<td>Maybe a calendar</td>
+						</tr>
+					</table>
+					<table style="width:33%; float:left; top:0; bottom:0; left:0; right:0; border:0px">
+						<tr>
+							<td>Tasks</td>
+						</tr>
+						<tr>
+							<td>Tasks and descriptions from database here</td>
+						</tr>
+					</table>
+					<table style="width:34%; float:left; top:0; bottom:0; left:0; right:0; border:0px">
+						<tr>
+							<td>Messages</td>
+						</tr>
+						<tr>
+							<td>Messages from database here</td>
+						</tr>
+					</table>
                         <br/><br/>
                         <a class="btn btn-primary" href="{{ url('group/create') }}">Create a group</a>
                     </div>
