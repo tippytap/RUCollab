@@ -25,7 +25,7 @@ class AddFkGroups extends Migration
     public function down()
     {
         Schema::table('groups', function (Blueprint $table) {
-            $table->dropForeign('group_leader_id');
+            $table->dropForeign('groups_group_leader_id_foreign');
         });
     }
 }

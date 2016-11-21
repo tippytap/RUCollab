@@ -26,8 +26,8 @@ class AddFkToAssignments extends Migration
     public function down()
     {
         Schema::table('assignments', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-            $table->dropForeign('task_id');
+            $table->dropForeign('assignments_user_id_foreign');
+            $table->dropForeign('assignments_task_id_foreign');
         });
     }
 }
