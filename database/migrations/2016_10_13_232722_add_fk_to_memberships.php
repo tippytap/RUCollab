@@ -26,8 +26,8 @@ class AddFkToMemberships extends Migration
     public function down()
     {
         Schema::table('memberships', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-            $table->dropForeign('group_id');
+            $table->dropForeign('memberships_user_id_foreign');
+            $table->dropForeign('memberships_group_id_foreign');
         });
     }
 }

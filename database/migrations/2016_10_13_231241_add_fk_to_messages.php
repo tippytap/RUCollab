@@ -25,9 +25,9 @@ class AddFkToMessages extends Migration
      */
     public function down()
     {
-        Schema::table('message', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-            $table->dropForeign('group_id');
+        Schema::table('messages', function (Blueprint $table) {
+            $table->dropForeign('messages_user_id_foreign');
+            $table->dropForeign('messages_group_id_foreign');
         });
     }
 }
