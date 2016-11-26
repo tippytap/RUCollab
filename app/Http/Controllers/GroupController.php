@@ -86,7 +86,17 @@ class GroupController extends Controller
      */
     public function edit($id = false)
     {
-        return view('groups.edit');
+        $group = Group::find($id);
+        return view('groups.edit', ['group' => $group, 'members' => $this->getMembers($id)]);
+    }
+
+    private function getMembers($id){
+        $group = Group::find($id);
+        $members = [];
+        foreach($group->membership as $member){
+            $members[] = User::find($member->user_id);
+        }
+        return $members;
     }
 
     /**

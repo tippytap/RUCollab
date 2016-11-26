@@ -5,7 +5,10 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ $group->group_name }}</div>
+                    <div class="panel-heading">
+                        {{ $group->group_name }}
+                        <a href="{{ url('/group/' . $group->id . '/edit') }}" class="pull-right "><i class="fa fa-pencil fa-btn"></i>Edit this group</a>
+                    </div>
 
                     <div class="panel-body">
                         <div class="col-xs-12 col-md-3">
@@ -19,34 +22,11 @@
                         </div>
                         <div class="col-xs-12 col-md-3">
                             <h4>Tasks</h4>
+                            <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
                         <div class="col-xs-12 col-md-3">
                             <h4>Messages</h4>
                         </div>
-                        {{--<table style="width:33%; float:left; top:0; bottom:0; left:100; right:0; border:0px">--}}
-						{{--<tr style="height:10%;">--}}
-							{{--<td>{{ date('l') }}</td>--}}
-						{{--</tr>--}}
-						{{--<tr>--}}
-							{{--<td>Maybe a calendar</td>--}}
-						{{--</tr>--}}
-					{{--</table>--}}
-					{{--<table style="width:33%; float:left; top:0; bottom:0; left:0; right:0; border:0px">--}}
-						{{--<tr>--}}
-							{{--<td>Tasks</td>--}}
-						{{--</tr>--}}
-						{{--<tr>--}}
-							{{--<td>Tasks and descriptions from database here</td>--}}
-						{{--</tr>--}}
-					{{--</table>--}}
-					{{--<table style="width:34%; float:left; top:0; bottom:0; left:0; right:0; border:0px">--}}
-						{{--<tr>--}}
-							{{--<td>Messages</td>--}}
-						{{--</tr>--}}
-						{{--<tr>--}}
-							{{--<td>Messages from database here</td>--}}
-						{{--</tr>--}}
-					{{--</table>--}}
                     </div>
                 </div>
             </div>
