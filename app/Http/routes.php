@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Route::group(['middleware' => 'web'], function(){
 
     Route::auth();
