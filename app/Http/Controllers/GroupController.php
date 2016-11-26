@@ -58,12 +58,23 @@ class GroupController extends Controller
         ]);
         $group->update(['group_leader_id' => $membership->getAttribute('user_id')]);
 
-//        return redirect('/dashboard');
+        return redirect('/dashboard');
     }
 
-    public function hasMany(Request $request, $groupId){
+    public function hasMany(Request $request, $groupId)
+    {
         $group = Group::find($groupId);
         echo $group->membership()->where('user_id', 1)->get();
+    }
+
+    public function show(Request $request, $groupId)
+    {
+        $group = Group::find($groupId);
+        $members = [];
+        foreach($group->membership as $member){
+            $members[] = User::find($member->user_id);
+        }
+        return view('groups.home', ['group' => $group, 'members' => $members]);
     }
 
 

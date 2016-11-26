@@ -20,7 +20,12 @@ Route::group(['middleware' => 'web'], function(){
 
     Route::auth();
 
-    Route::resource('group', 'GroupController');
+    Route::get('/group/create', 'GroupController@create');
+    Route::post('/group', 'GroupController@store');
+    Route::delete('/group/{groupId}', 'GroupController@destroy');
+    Route::put('/group/{groupId}', 'GroupController@update');
+    Route::get('/group/{groupId}', 'GroupController@show');
+    Route::get('/group/{groupId}/edit', 'GroupController@edit');
 
 	Route::get('/user_edit/{userId}', 'UserController@userEdit');
 	
