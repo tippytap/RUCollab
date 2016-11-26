@@ -108,7 +108,11 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $group = Group::find($id);
+        $group->group_name = $request->input('group-name');
+        $group->purpose = $request->input('purpose');
+        $group->save();
+        return redirect("group/$id/edit")->with(['group' => $group, 'members' => $this->getMembers($id)]);
     }
 
     /**

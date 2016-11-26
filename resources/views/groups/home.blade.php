@@ -11,20 +11,22 @@
                     </div>
 
                     <div class="panel-body">
-                        <div class="col-xs-12 col-md-3">
+                        <div class="col-xs-12 col-md-4">
                             <h3>{{ date('l') }}</h3>
                             <p>{{ date('F') . ' ' .date('j') . ', ' . date('Y') }}</p>
-                            <p><strong>Members</strong></p>
                             <hr/>
+                            <p><strong>Members</strong></p>
+                            <ul>
                             @foreach($members as $member)
-                                <p>{{ $member->name }}</p>
+                                <li>{{ $member->name }}</li>
                             @endforeach
+                            </ul>
                         </div>
-                        <div class="col-xs-12 col-md-3">
+                        <div class="col-xs-12 col-md-4">
                             <h4>Tasks</h4>
                             <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
-                        <div class="col-xs-12 col-md-3">
+                        <div class="col-xs-12 col-md-4">
                             <h4>Messages</h4>
                         </div>
                     </div>
