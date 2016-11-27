@@ -31,12 +31,15 @@
                             {!! csrf_field() !!}
                             <div class="col-xs-12 col-md-4">
                                 <h4>Messages</h4>
+                                <hr/>
                                 <div class="col-xs-12 ">
                                     @foreach($messages as $message)
                                         <div>
-                                            <p>{{ $message['message_text'] }}</p>
+                                            <span>{{ $message['message_text'] }}</span>
+                                            <br/>
                                             <span>{{ $message['user'] }} on {{ $message['date'] }}</span>
                                         </div>
+                                        <br/>
                                     @endforeach
                                 </div>
                                 <div class="input-group">

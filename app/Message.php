@@ -17,6 +17,6 @@ class Message extends Model
      * @return Array
      */
     public function member(){
-        return $this->belongsTo('App\Member');
+        return $this->belongsTo('App\Membership');
     }
 }

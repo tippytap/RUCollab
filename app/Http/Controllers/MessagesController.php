@@ -40,6 +40,9 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'message-text' => 'required|max:255'
+        ]);
         $user = $request->user();
         $groupId = $request->input('group');
         $messageText = $request->input('message-text');
