@@ -47,13 +47,14 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $groupName = $request->input('group-name');
-        $user = User::find($request->input('user'));
+        $user = $request->user();
         $group = Group::create([
             'group_name' => $groupName,
-            'formed_date' => time()
+            'formed_date' => time(),
+            'purpose' => $request->input('purpose')
         ]);
         $membership = Membership::create([
-            'user_id' => $user->getAttribute('id'),
+            'user_id' => $user->id,
             'group_id' => $group->getAttribute('id')
         ]);
         $group->update(['group_leader_id' => $membership->getAttribute('user_id')]);
