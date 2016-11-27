@@ -12,7 +12,6 @@
 
                     <div class="panel-body">
                         <br/>
-                        {{--<h3>Group Admin</h3>--}}
                         <form class="form" id="create-group" method="POST" action="{{ url('group/' . $group->id) }}">
                             {{ method_field("PUT") }}
                             {!! csrf_field() !!}
@@ -42,15 +41,15 @@
                                                 {{--</li>--}}
                                             </ul>
                                             <p>Add task: </p>
-                                            <input class="form-control" type="text" name="task[]" id="add-task" placeholder="task description" />
+                                            <textarea class="form-control" id="add-task" name="add-task" placeholder="Task description"></textarea>
                                             <br/>
                                             <p>Assign: </p>
                                             @foreach($members as $member)
-                                                <button class="btn btn-default"><i class="fa fa-user fa-btn"></i>{{ $member->name }}</button>
+                                                <button data-member="{{ $member->id }}" class="btn btn-default"><i class="fa fa-user fa-btn"></i>{{ $member->name }}</button>
                                             @endforeach
                                             <div>
                                                 <br/>
-                                                <button class="btn btn-default col-xs-12"><i class="fa fa-plus fa-btn"></i>Add Task</button>
+                                                <button id="add-task" class="btn btn-default col-xs-12"><i class="fa fa-plus fa-btn"></i>Add Task</button>
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +62,7 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <br/>
-                                    <button id="invite-btn" class="col-xs-6 btn btn-default"><i class="fa fa-btn fa-envelope"></i>Send invitation</button>
+                                    <button id="invite-btn" class="col-xs-6 btn btn-default"><i class="fa fa-btn fa-send"></i>Send invitation</button>
                                 </div>
                                 <br/>
                             </div>

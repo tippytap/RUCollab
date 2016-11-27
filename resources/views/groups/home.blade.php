@@ -7,7 +7,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{ $group->group_name }}
-                        <a href="{{ url('/group/' . $group->id . '/edit') }}" class="pull-right "><i class="fa fa-pencil fa-btn"></i>Edit this group</a>
+                        <a data-target="#description" data-toggle="modal" href="#" class="btn btn-link"><i class="fa-btn fa fa-file-text"></i>Description</a>
+                        <a href="{{ url('/group/' . $group->id . '/edit') }}" class="btn btn-link pull-right "><i class="fa fa-pencil fa-btn"></i>Edit this group</a>
                     </div>
 
                     <div class="panel-body">
@@ -26,10 +27,33 @@
                             <h4>Tasks</h4>
                             <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
-                        <div class="col-xs-12 col-md-4">
-                            <h4>Messages</h4>
-                        </div>
+                        <form method="POST" action="{{ url('message') }}">
+                            <div class="col-xs-12 col-md-4">
+                                <h4>Messages</h4>
+                                <div class="input-group">
+                                    <textarea class="form-control" name="message-text" id="message-text" placeholder="Type message here"></textarea>
+                                    <span class="input-group-addon">
+                                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-comment"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="description" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Group Description
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ $group->purpose }}
                 </div>
             </div>
         </div>
