@@ -14,7 +14,7 @@
                     <div class="panel-body">
                         <div class="col-xs-12 col-md-4">
                             <h3>{{ date('l') }}</h3>
-                            <p>{{ date('F') . ' ' .date('j') . ', ' . date('Y') }}</p>
+                            <p>{{ date('F') . ' ' . date('j') . ', ' . date('Y') }}</p>
                             <hr/>
                             <p><strong>Members</strong></p>
                             <ul>
@@ -28,9 +28,19 @@
                             <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
                         <form method="POST" action="{{ url('message') }}">
+                            {!! csrf_field() !!}
                             <div class="col-xs-12 col-md-4">
                                 <h4>Messages</h4>
+                                <div class="col-xs-12 ">
+                                    @foreach($messages as $message)
+                                        <div>
+                                            <p>{{ $message['message_text'] }}</p>
+                                            <span>{{ $message['user'] }} on {{ $message['date'] }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
                                 <div class="input-group">
+                                    <input type="hidden" name="group" id="group" value="{{ $group->id }}"/>
                                     <textarea class="form-control" name="message-text" id="message-text" placeholder="Type message here"></textarea>
                                     <span class="input-group-addon">
                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-comment"></i></button>

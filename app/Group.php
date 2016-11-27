@@ -23,4 +23,14 @@ class Group extends Model
         return $this->hasMany('App\Membership');
     }
 
+    /**
+     * Returns the User models associated with this Group instance
+     * that are related through the memberships table
+     *
+     * @return Array
+     */
+    public function messages(){
+        return $this->hasMany('App\Message');
+    }
+
 }

@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Message;
 
+use App\Membership;
+
 class MessagesController extends Controller
 {
     /**
@@ -38,6 +40,17 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
+        $user = $request->user();
+        $groupId = $request->input('group');
+        $messageText = $request->input('message-text');
+        $membership = Membership::where('group_id', $groupId)->first();
+        $message = Message::create([
+            'user_id' => $membership->user_id,
+            'group_id' => $membership->group_id,
+            'message_string' => $messageText,
+            'time_created' => date('Y-m-d')
+        ]);
+        return redirect("group/$membership->group_id");
     }
 
     /**

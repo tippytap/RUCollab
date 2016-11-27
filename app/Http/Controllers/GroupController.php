@@ -71,11 +71,17 @@ class GroupController extends Controller
     public function show(Request $request, $groupId)
     {
         $group = Group::find($groupId);
-        $members = [];
-        foreach($group->membership as $member){
-            $members[] = User::find($member->user_id);
+        $members = $this->getMembers($groupId);
+        $messages = [];
+        foreach($group->messages as $message){
+            $m = [
+                'user' => User::find($message->user_id)->name,
+                'message_text' => $message->message_string,
+                'date' => $message->time_created
+            ];
+            $messages[] = $m;
         }
-        return view('groups.home', ['group' => $group, 'members' => $members]);
+        return view('groups.home', ['group' => $group, 'members' => $members, 'messages' => $messages]);
     }
 
 
