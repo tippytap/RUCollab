@@ -123,6 +123,17 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $group = Group::find($id);
+        $members = $group->membership;
+        foreach($members as $member){
+            $member->delete();
+        }
+        Group::destroy($id);
+        return redirect('/');
+    }
+
+    public function delete(Request $request, $id){
+        $group = Group::find($id);
+        return view('groups.delete', ['group' => $group]);
     }
 }

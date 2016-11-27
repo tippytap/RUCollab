@@ -26,6 +26,7 @@ Route::group(['middleware' => 'web'], function(){
     Route::put('/group/{groupId}', 'GroupController@update');
     Route::get('/group/{groupId}', 'GroupController@show');
     Route::get('/group/{groupId}/edit', 'GroupController@edit');
+    Route::get('/group/delete/{groupId}', 'GroupController@delete');
 
     Route::resource('message', 'MessagesController', [
         'only' => ['store', 'destroy']

@@ -11,6 +11,7 @@ class Membership extends Model
      */
     protected $fillable = ['user_id', 'group_id'];
 
+    protected $primaryKey = ['user_id', 'group_id'];
 
     /**
      * Keeps timestamps from being automatically created when a new
