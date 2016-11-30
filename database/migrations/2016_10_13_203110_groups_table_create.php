@@ -17,6 +17,7 @@ class GroupsTableCreate extends Migration
             $table->integer('group_leader_id')->unsigned()->nullable();
             $table->date('formed_date');
             $table->string('group_name');
+            $table->string('purpose')->nullable();
         });
     }
 

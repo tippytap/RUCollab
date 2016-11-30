@@ -13,7 +13,7 @@
 						</tr>
 						@foreach($groups as $group)
 							<tr>
-								<td><a href="{{ url('/group/' . $group->group_id) }}">{{$group->group_name}}</a></td>
+								<td><a href="{{ url('/group/' . $group->id) }}">{{$group->group_name}}</a></td>
 							</tr>
 						@endforeach
 					</table>

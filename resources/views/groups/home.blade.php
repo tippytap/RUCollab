@@ -5,36 +5,68 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Groups Dashboard</div>
+                    <div class="panel-heading">
+                        {{ $group->group_name }}
+                        <a data-target="#description" data-toggle="modal" href="#" class="btn btn-link"><i class="fa-btn fa fa-file-text"></i>Description</a>
+                        <a href="{{ url('/group/' . $group->id . '/edit') }}" class="btn btn-link pull-right "><i class="fa fa-pencil fa-btn"></i>Edit this group</a>
+                    </div>
 
                     <div class="panel-body">
-                        <table style="width:33%; float:left; top:0; bottom:0; left:100; right:0; border:0px">
-						<tr style="height:10%;">
-							<td>Calendar</td>
-						</tr>
-						<tr>
-							<td>Maybe a calendar</td>
-						</tr>
-					</table>
-					<table style="width:33%; float:left; top:0; bottom:0; left:0; right:0; border:0px">
-						<tr>
-							<td>Tasks</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-					</table>
-					<table style="width:34%; float:left; top:0; bottom:0; left:0; right:0; border:0px">
-						<tr>
-							<td>Messages</td>
-						</tr>
-						<tr>
-							<td>Messages from database here</td>
-						</tr>
-					</table>
-                        <br/><br/>
-                        <a class="btn btn-primary" href="{{ url('group/create') }}">Create a group</a>
+                        <div class="col-xs-12 col-md-4">
+                            <h3>{{ date('l') }}</h3>
+                            <p>{{ date('F') . ' ' . date('j') . ', ' . date('Y') }}</p>
+                            <hr/>
+                            <p><strong>Members</strong></p>
+                            <ul>
+                            @foreach($members as $member)
+                                <li>{{ $member->name }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <h4>Tasks</h4>
+                            <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
+                        </div>
+                        <form method="POST" action="{{ url('message') }}">
+                            {!! csrf_field() !!}
+                            <div class="col-xs-12 col-md-4">
+                                <h4>Messages</h4>
+                                <hr/>
+                                <div class="col-xs-12 ">
+                                    @foreach($messages as $message)
+                                        <div>
+                                            <span>{{ $message['message_text'] }}</span>
+                                            <br/>
+                                            <span>{{ $message['user'] }} on {{ $message['date'] }}</span>
+                                        </div>
+                                        <br/>
+                                    @endforeach
+                                </div>
+                                <div class="input-group">
+                                    <input type="hidden" name="group" id="group" value="{{ $group->id }}"/>
+                                    <textarea class="form-control" name="message-text" id="message-text" placeholder="Type message here"></textarea>
+                                    <span class="input-group-addon">
+                                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-comment"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="description" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Group Description
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ $group->purpose }}
                 </div>
             </div>
         </div>
