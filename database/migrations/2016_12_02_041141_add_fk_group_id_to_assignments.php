@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFkToAssignments extends Migration
+class AddFkGroupIdToAssignments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class AddFkToAssignments extends Migration
     public function up()
     {
         Schema::table('assignments', function (Blueprint $table) {
-            $table->foreign('user_id')->references('user_id')->on('memberships');
-            $table->foreign('task_id')->references('task_id')->on('tasks');
+            $table->foreign('group_id')->references('group_id')->on('memberships');
         });
     }
 
@@ -26,8 +25,7 @@ class AddFkToAssignments extends Migration
     public function down()
     {
         Schema::table('assignments', function (Blueprint $table) {
-            $table->dropForeign('assignments_user_id_foreign');
-            $table->dropForeign('assignments_task_id_foreign');
+            $table->dropForeign("assignments_group_id_foreign");
         });
     }
 }
