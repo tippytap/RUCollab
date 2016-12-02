@@ -13,7 +13,7 @@ class AddFkGroupIdToAssignments extends Migration
     public function up()
     {
         Schema::table('assignments', function (Blueprint $table) {
-            $table->foreign('group_id')->references('group_id')->on('memberships');
+            $table->foreign('group_id')->references('group_id')->on('memberships')->onDelete('cascade');
         });
     }
 
