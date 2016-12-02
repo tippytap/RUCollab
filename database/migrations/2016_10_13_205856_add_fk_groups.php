@@ -13,7 +13,7 @@ class AddFkGroups extends Migration
     public function up()
     {
         Schema::table('groups', function (Blueprint $table) {
-            $table->foreign('group_leader_id')->references('user_id')->on('memberships');
+            $table->foreign('group_leader_id')->references('user_id')->on('memberships')->onDelete('cascade');
         });
     }
 
