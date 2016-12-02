@@ -15,6 +15,7 @@ class CreateMembershipsTable extends Migration
         Schema::create('memberships', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('group_id')->unsigned();
+            $table->boolean('is_active_member');
             $table->primary(['user_id', 'group_id']);
         });
     }
