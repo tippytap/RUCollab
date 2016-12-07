@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Membership;
 use App\Group;
+use DB;
 
 class UserController extends Controller
 {
@@ -30,12 +31,32 @@ class UserController extends Controller
 		$user = $request->user();
 		$userId = $user->id;
 		$groups = [];
+		$tasks = [];
+		
 		foreach($user->membership as $group){
 			$group = Group::find($group->group_id);
+			$tasks = $this->getTasks($userId, $group->id);
+			//try to give index as an array if this doesn't work - if that does;t work make another array
 			$groups[] = $group;
+			$group->tasks = $tasks;
 		}
-		return view('userViews.index', ['groups'=>$groups]);
+		return view('userViews.index', ['groups'=>$groups]);		
     }
+	
+	/**
+	* Get the tasks for a group
+	*/
+	public function getTasks($userId, $groupId){
+		$task = DB::table('assignments')
+				->join('tasks', 'tasks.task_id', '=', 'assignments.task_id')
+				->select('assignments.group_id', 'tasks.task_id', 'tasks.task_string')
+				->where([
+							["assignments.user_id", "=", $userId], 
+							["assignments.group_id", "=", $groupId],
+							["tasks.is_completed", "=", "false"]
+						])->get();
+		return $task;
+	}
 	/**
 	* Show the page to edit user information
 	*
@@ -76,5 +97,18 @@ class UserController extends Controller
     {
         return view('userViews.home');
     }
-	
+	/**
+	* Show the page to edit user information
+	*
+	* @return View
+	*/
+	public function userUpdate(Request $request, $userID)
+    {
+        $user = User::find($userID);
+		$user->name = $request->input('name');
+		$user->phone = $request->input('phone');
+		$user->email = $request->input('email');
+        $user->save();
+		return redirect("/userEdit/$userID");
+    }
 }
