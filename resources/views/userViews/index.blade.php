@@ -7,42 +7,21 @@
             <div class="panel panel-default">
 					
                 <div class="panel-body">
-                    <table style="width:50%; float:left; top:0; bottom:0; left:100; right:0; border:0px">
-						<tr style="height:10%;">
-							<td>Groups</td>
-						</tr>
+					<!--<div class="col-md-6">-->
 						@foreach($groups as $group)
-							<tr>
-								<td><a href="{{ url('/group/' . $group->id) }}">{{$group->group_name}}</a></td>
-							</tr>
+							<table style="width:400px; height:250px; float:left; top:0; bottom:0; left:100; right:0; border:1px solid black">
+								<tr>
+									<td><a href="{{ url('/group/' . $group->id) }}">{{$group->group_name}}</a></td>
+								</tr>
+								@foreach($group->tasks as $task)
+									<tr>
+										<td>
+										<td>{{ $task->task_string }}</td>
+									</tr>
+								@endforeach
+							</table>
 						@endforeach
-					</table>
-					<table style="width:50%; float:right; top:0; bottom:0; left:0; right:0; border:0px">
-						<tr>
-							<td>Tasks</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-						<tr>
-							<td>Tasks and descriptions from database here</td>
-						</tr>
-					</table>
+						<!--</div>-->
                 </div>
             </div>
         </div>
