@@ -28,4 +28,8 @@ class User extends Authenticatable
 		return $this->hasMany('App\Membership');
 	}
 	
+	public function assignments(){
+		return $this->hasMany('App\Task');
+	}
+	
 }

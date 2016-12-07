@@ -36,9 +36,20 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $taskString = $request->input('group_string');
+        $user = User::find($request->input('user'));
+        $task = Task::create([
+            'task_string' => $taskString,
+            'time_created' => time(),
+			'due_date' => time()
+        ]);
+        $membership = Membership::create([
+            'user_id' => $user->getAttribute('id'),
+            'task_id' => $task->getAttribute('id')
+        ]);
     }
-
+	
+	
     /**
      * Display the specified resource.
      *
