@@ -155,12 +155,13 @@ class GroupController extends Controller
         return redirect("/group/$groupId");
     }
 
-    public function groupMemberEmail(Request $request, $groupId, $userId){
-        $user = User::findOrFail($userId);
+    public function groupMemberEmail(Request $request, $groupId){
+        $user = User::where('email', $request->input('invite-1'))->first();
         $group = Group::findOrFail($groupId);
         Mail::send('email.addMember', ['user' => $user, 'group' => $group], function ($mail) use ($user, $group){
             $mail->from('erikmiller6@gmail.com', 'RUCollab');
             $mail->to($user->email, $user->name)->subject('Join ' . $group->group_name);
         });
+        return redirect("/group/$groupId/edit");
     }
 }

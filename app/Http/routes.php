@@ -29,6 +29,7 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/group/delete/{groupId}', 'GroupController@delete');
     Route::get('/group/groupMemberAdd/{groupId}/{userId}', 'GroupController@groupMemberAdd');
     Route::get('/group/groupMemberEmail/{groupId}/{userId}', 'GroupController@groupMemberEmail');
+    Route::get('/group/groupMemberEmail/{groupId}', 'GroupController@groupMemberEmail');
 
     Route::resource('message', 'MessagesController', [
         'only' => ['store', 'destroy']

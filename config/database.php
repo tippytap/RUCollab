@@ -88,7 +88,7 @@ return [
             'host' => env('DB_HOST', '137.45.216.2'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'proj3'),
-            'username' => env('DB_USERNAME', 'proj3'),
+            'username' => env('DB_USERNAME', 'proj3@localhost'),
             'password' => env('DB_PASSWORD', 'wildcats'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
