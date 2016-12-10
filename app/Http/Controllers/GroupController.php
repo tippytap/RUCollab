@@ -10,6 +10,8 @@ use App\Group;
 use App\Membership;
 use App\User;
 
+use Mail;
+
 class GroupController extends Controller
 {
 
@@ -142,5 +144,23 @@ class GroupController extends Controller
     public function delete(Request $request, $id){
         $group = Group::find($id);
         return view('groups.delete', ['group' => $group]);
+    }
+
+    public function groupMemberAdd(Request $request, $groupId, $userId){
+        $user = User::findOrFail($userId);
+        Membership::create([
+            'user_id' => $user->id,
+            'group_id' => $groupId
+        ]);
+        return redirect("/group/$groupId");
+    }
+
+    public function groupMemberEmail(Request $request, $groupId, $userId){
+        $user = User::findOrFail($userId);
+        $group = Group::findOrFail($groupId);
+        Mail::send('email.addMember', ['user' => $user, 'group' => $group], function ($mail) use ($user, $group){
+            $mail->from('erikmiller6@gmail.com', 'RUCollab');
+            $mail->to($user->email, $user->name)->subject('Join ' . $group->group_name);
+        });
     }
 }

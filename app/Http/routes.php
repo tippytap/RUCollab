@@ -27,6 +27,8 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/group/{groupId}', 'GroupController@show');
     Route::get('/group/{groupId}/edit', 'GroupController@edit');
     Route::get('/group/delete/{groupId}', 'GroupController@delete');
+    Route::get('/group/groupMemberAdd/{groupId}/{userId}', 'GroupController@groupMemberAdd');
+    Route::get('/group/groupMemberEmail/{groupId}/{userId}', 'GroupController@groupMemberEmail');
 
     Route::resource('message', 'MessagesController', [
         'only' => ['store', 'destroy']
@@ -43,5 +45,7 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/hasMany/{groupId}', 'GroupController@hasMany');
 	
 	Route::get('/hasMany/{taskId}', 'TaskController@hasMany');
+
+    Route::get('/emailTest', 'GroupController@email');
 
 });
