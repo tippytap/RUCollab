@@ -8,6 +8,7 @@ use App\User;
 use App\Membership;
 use App\Group;
 use DB;
+use Auth;
 
 class UserController extends Controller
 {
@@ -27,6 +28,7 @@ class UserController extends Controller
      * @return View
      */
     public function index(Request $request)
+        if($request->user()->is_active){
     {		
 		$user = $request->user();
 		$userId = $user->id;
@@ -40,6 +42,10 @@ class UserController extends Controller
 			$group->tasks = $tasks;
 		}
 		return view('userViews.index', ['groups'=>$groups]);		
+        else{
+            Auth::logout();
+            return redirect('/');
+        }
     }
 	
 	/**
@@ -83,7 +89,10 @@ class UserController extends Controller
      */
     public function userDestroy(Request $request, $userId)
     {
-        User::destroy($userId);
+        $user = User::find($userId);
+        $user->is_active = false;
+        $user->save();
+        Auth::logout();
         return redirect('/');
     }
 
@@ -109,5 +118,26 @@ class UserController extends Controller
 		$user->email = $request->input('email');
         $user->save();
 		return redirect("/userEdit/$userID");
+    }
+
+    public function reactivateUser($userEmail){
+        $user = User::where('email', $userEmail)->first();
+        $user->is_active = true;
+        $user->save();
+        return redirect('/dashboard')->with([
+            "message" => "Account Reactivated! Please Log in."
+        ]);
+    }
+
+    public function userStore(Request $request, $userId){
+        $this->validate($request, [
+            'name' => 'present|max:255',
+            'phone' => 'present|max:10'
+        ]);
+        $user = User::find($userId);
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->save();
+        return redirect("/user_edit/$userId");
     }
 }

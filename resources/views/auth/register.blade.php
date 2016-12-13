@@ -88,9 +88,26 @@
                             </div>
                         </div>
                     </form>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <h4>Reactivate account <small>Enter your email in the field above</small></h4>
+                            <a class='btn btn-default' id="reactivateBtn" href='{{ url('reactivate/') }}'>Reactivate Account</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    <script type="text/javascript">
+
+        var emailEl = document.getElementById('email');
+        var reactivateBtn = document.getElementById('reactivateBtn');
+        emailEl.addEventListener('change', function(){
+            var link = reactivateBtn.getAttribute('href');
+            link += "/" + emailEl.value;
+            reactivateBtn.setAttribute('href', link);
+        });
+
+    </script>
 @endsection

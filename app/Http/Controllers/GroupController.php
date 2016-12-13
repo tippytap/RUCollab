@@ -12,6 +12,8 @@ use App\Membership;
 use App\User;
 use DB;
 
+use Mail;
+
 class GroupController extends Controller
 {
 
@@ -173,16 +175,37 @@ class GroupController extends Controller
     public function destroy($id)
     {
         $group = Group::find($id);
-        $members = $group->membership;
-        foreach($members as $member){
-            $member->delete();
-        }
-        Group::destroy($id);
+//        $members = $group->membership;
+//        foreach($members as $member){
+//            $m = Membership::where('user_id', $member->user_id)->first();
+//            $m->delete();
+////            $member->delete();
+//        }
+//        Group::destroy($id);
         return redirect('/');
     }
 
     public function delete(Request $request, $id){
         $group = Group::find($id);
         return view('groups.delete', ['group' => $group]);
+    }
+
+    public function groupMemberAdd(Request $request, $groupId, $userId){
+        $user = User::findOrFail($userId);
+        Membership::create([
+            'user_id' => $user->id,
+            'group_id' => $groupId
+        ]);
+        return redirect("/group/$groupId");
+    }
+
+    public function groupMemberEmail(Request $request, $groupId){
+        $user = User::where('email', $request->input('invite-1'))->first();
+        $group = Group::findOrFail($groupId);
+        Mail::send('email.addMember', ['user' => $user, 'group' => $group], function ($mail) use ($user, $group){
+            $mail->from('erikmiller6@gmail.com', 'RUCollab');
+            $mail->to($user->email, $user->name)->subject('Join ' . $group->group_name);
+        });
+        return redirect("/group/$groupId/edit");
     }
 }

@@ -46,9 +46,9 @@
                                         <div>
                                             <span>{{ $message['message_text'] }}</span>
                                             <br/>
-                                            <span>{{ $message['user'] }} on {{ $message['date'] }}</span>
+                                            <span><em><small>{{ $message['user'] }}</small></em></span>
+                                            <hr/>
                                         </div>
-                                        <br/>
                                     @endforeach
                                 </div>
                                 <div class="input-group">

@@ -48,7 +48,7 @@ class MessagesController extends Controller
         $messageText = $request->input('message-text');
         $membership = Membership::where('group_id', $groupId)->first();
         $message = Message::create([
-            'user_id' => $membership->user_id,
+            'user_id' => $user->id,
             'group_id' => $membership->group_id,
             'message_string' => $messageText,
             'time_created' => date('Y-m-d')
