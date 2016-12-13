@@ -34,7 +34,7 @@
                         <br/>
                         <a href="{{ url('/user_delete') }}" class="btn btn-danger">
                             <i class="fa fa-trash">&nbsp;</i>
-                            Delete Account
+                            Deactivate Account
                         </a>
 					</div>
                 </div>
