@@ -8,21 +8,23 @@
                 <div class="panel-heading">Edit user information</div>
                 <div class="panel-body">
 					<div id="form">
-						<form action="" method="post" name="" class="form">
+						<form action="{{ url('/user_store/' . Auth::user()->id) }}" method="post" name="" class="form">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 							<fieldset>
                                 <div>
-                                    <label for="Student">Name:</label>
-                                    <input name="Student" class="form-control" placeholder="{{ $user->name }}" />
+                                    <label for="name">Name:</label>
+                                    <input name="name" class="form-control" value="{{ $user->name }}" />
                                 </div>
                                 <div>
                                     <br/>
-                                    <label for="Phone_Number">Phone number:</label>
-                                    <input name="Phone_Number" class="form-control" placeholder="" />
+                                    <label for="phone">Phone number:</label>
+                                    <input name="phone" class="form-control" value="{{ $user->phone }}" />
                                 </div>
                                 <div>
                                     <br/>
-                                    <label for="Email">Email:</label>
-                                    <input name="Email" class="form-control" placeholder="{{ $user->email }}" />
+                                    <label>Email</label>
+                                    <p>{{ $user->email }}</p>
                                 </div>
 							</fieldset>
                             <br/>
@@ -34,7 +36,7 @@
                         <br/>
                         <a href="{{ url('/user_delete') }}" class="btn btn-danger">
                             <i class="fa fa-trash">&nbsp;</i>
-                            Delete Account
+                            Deactivate Account
                         </a>
 					</div>
                 </div>

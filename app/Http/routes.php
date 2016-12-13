@@ -22,7 +22,7 @@ Route::group(['middleware' => 'web'], function(){
 
     Route::get('/group/create', 'GroupController@create');
     Route::post('/group', 'GroupController@store');
-    Route::delete('/group/{groupId}', 'GroupController@destroy');
+//    Route::delete('/group/{groupId}', 'GroupController@destroy');
     Route::put('/group/{groupId}', 'GroupController@update');
     Route::get('/group/{groupId}', 'GroupController@show');
     Route::get('/group/{groupId}/edit', 'GroupController@edit');
@@ -39,7 +39,9 @@ Route::group(['middleware' => 'web'], function(){
 	
 	Route::get('/user_delete/', 'UserController@userDelete');
 
-    Route::get('/user_destroy/{userId}', 'UserController@userDestroy');
+    Route::put('/user_store/{userId}', 'UserController@userStore');
+
+    Route::put('/user_destroy/{userId}', 'UserController@userDestroy');
 	
 	Route::get('/dashboard', 'UserController@index');
 
@@ -48,5 +50,8 @@ Route::group(['middleware' => 'web'], function(){
 	Route::get('/hasMany/{taskId}', 'TaskController@hasMany');
 
     Route::get('/emailTest', 'GroupController@email');
+
+    Route::get('/reactivate/{userEmail}', 'UserController@reactivateUser');
+    Route::get('/reactivate/', function(){ return redirect('/register'); });
 
 });

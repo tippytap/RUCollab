@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Assignment;
+use App\Task;
 use App\Group;
 use App\Membership;
 use App\User;
+use DB;
 
 use Mail;
 
@@ -72,9 +74,14 @@ class GroupController extends Controller
 
     public function show(Request $request, $groupId)
     {
+		$user = $request->user();
+		$userId = $user->id;
         $group = Group::find($groupId);
+		$assignment = Assignment::where('group_id', $groupId);
         $members = $this->getMembers($groupId);
         $messages = [];
+		$groups = [];
+		$tasks = [];
         foreach($group->messages as $message){
             $m = [
                 'user' => User::find($message->user_id)->name,
@@ -83,10 +90,45 @@ class GroupController extends Controller
             ];
             $messages[] = $m;
         }
-        return view('groups.home', ['group' => $group, 'members' => $members, 'messages' => $messages]);
+		
+		foreach($user->membership as $g){
+			$g = Group::find($g->group_id);
+			$tasks = $this->getTasks($userId, $group->id);
+			$groups[] = $g;
+			$g->tasks = $tasks;
+		}
+        return view('groups.home', ['group' => $group, 'members' => $members, 'groups' => $groups, 'messages' => $messages]);
     }
 
-
+	public function getTasks($userId, $groupId){
+		$task = DB::table('assignments')
+				->join('tasks', 'tasks.task_id', '=', 'assignments.task_id')
+				->select('assignments.group_id', 'tasks.task_id', 'tasks.task_string')
+				->where([ 
+							["assignments.group_id", "=", $groupId],
+							["tasks.is_completed", "=", "false"]
+						])->get();
+		return $task;
+	}
+	
+	/**
+     * Store a newly created task resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function taskstore(Request $request)
+    {
+        $taskString = $request->input('task-string');
+        $task = Task::create([
+            'task_string' => $taskString,
+            'User' => '1',
+            'due_date' => $request->input('datetimepicker1')
+        ]);
+		
+        return redirect('/dashboard');
+    }
+	
     /**
      * Show the form for editing the specified resource.
      *
@@ -133,11 +175,13 @@ class GroupController extends Controller
     public function destroy($id)
     {
         $group = Group::find($id);
-        $members = $group->membership;
-        foreach($members as $member){
-            $member->delete();
-        }
-        Group::destroy($id);
+//        $members = $group->membership;
+//        foreach($members as $member){
+//            $m = Membership::where('user_id', $member->user_id)->first();
+//            $m->delete();
+////            $member->delete();
+//        }
+//        Group::destroy($id);
         return redirect('/');
     }
 

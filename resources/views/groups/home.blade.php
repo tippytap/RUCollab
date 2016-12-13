@@ -25,6 +25,15 @@
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <h4>Tasks</h4>
+							@foreach($groups as $g)
+							@if($g->id == $group->id)
+							<ul>
+								@foreach($g->tasks as $task)
+									<li>{{ $task->task_string }}</li>
+								@endforeach
+							</ul>
+							@endif
+							@endforeach
                             <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
                         <form method="POST" action="{{ url('message') }}">
@@ -37,9 +46,9 @@
                                         <div>
                                             <span>{{ $message['message_text'] }}</span>
                                             <br/>
-                                            <span>{{ $message['user'] }} on {{ $message['date'] }}</span>
+                                            <span><em><small>{{ $message['user'] }}</small></em></span>
+                                            <hr/>
                                         </div>
-                                        <br/>
                                     @endforeach
                                 </div>
                                 <div class="input-group">

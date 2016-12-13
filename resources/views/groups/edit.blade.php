@@ -27,26 +27,42 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Tasks</div>
                                         <div class="panel-body">
-                                            <ul>
-                                                {{-- TASK TEMPLATE --}}
-                                                {{--<li>Do the outline |--}}
-                                                    {{--<span>&nbsp;assigned:&nbsp;--}}
-                                                        {{--<a href="#">Joe Dude</a>--}}
-                                                    {{--</span>&nbsp;|&nbsp;--}}
-                                                    {{--<a href="#" role="button"><i class="fa fa-check text-success">&nbsp;</i></a>--}}
-                                                    {{--&nbsp;--}}
-                                                    {{--<a href="#" role="button"><i class="fa fa-pencil">&nbsp;</i></a>--}}
-                                                    {{--&nbsp;--}}
-                                                    {{--<a href="#" role="button"><i class="fa fa-remove text-danger">&nbsp;</i></a>--}}
-                                                {{--</li>--}}
-                                            </ul>
                                             <p>Add task: </p>
-                                            <textarea class="form-control" id="add-task" name="add-task" placeholder="Task description"></textarea>
+                                            <textarea class="form-control" id="task-string" name="task-string" placeholder="Task description"></textarea>
                                             <br/>
                                             <p>Assign: </p>
                                             @foreach($members as $member)
                                                 <button data-member="{{ $member->id }}" class="btn btn-default"><i class="fa fa-user fa-btn"></i>{{ $member->name }}</button>
                                             @endforeach
+											<br/>
+											<br/>
+                                            <p>Due Date: </p>
+											<div id="ARDT" class="container" > 
+												<div class="row">
+													<div class='col-sm-4'>
+														<div class="form-group">
+															<div class='input-group date' id='datetimepicker1'>
+																<input type='text' class="form-control" />
+																<span class="input-group-addon">
+																	<span class="glyphicon glyphicon-calendar"></span>
+																</span>
+															</div>
+														</div>
+													</div>
+														<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+													<script type="text/javascript" src="js/script.js">
+														$(function () {
+															$('#datetimepicker1').datepicker();
+														});
+													</script>
+														<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+														<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+														<script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/src/js/bootstrap-datetimepicker.js"></script>
+														<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+														<link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/build/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+													
+												</div>
+											</div>
                                             <div>
                                                 <br/>
                                                 <button id="add-task" class="btn btn-default col-xs-12"><i class="fa fa-plus fa-btn"></i>Add Task</button>
@@ -79,9 +95,9 @@
                             <button type="submit" class="btn btn-primary col-xs-12">
                                 <i class="fa fa-save fa-btn"></i>Update group
                             </button>
-                            <br/>
-                            <br/>
-                            <a href="{{ url('group/delete/' . $group->id) }}" class="col-xs-12 btn btn-danger">Delete Group</a>
+                            {{--<br/>--}}
+                            {{--<br/>--}}
+                            {{--<a href="{{ url('group/delete/' . $group->id) }}" class="col-xs-12 btn btn-danger">Delete Group</a>--}}
                     </div>
                 </div>
             </div>

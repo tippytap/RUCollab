@@ -26,8 +26,8 @@ return [
     |
     */
 
-//    'default' => env('DB_CONNECTION', 'erik'),
-    'default' => 'production',
+    'default' => env('DB_CONNECTION', 'erik'),
+//    'default' => 'production',
 
     /*
     |--------------------------------------------------------------------------
@@ -84,35 +84,20 @@ return [
             'engine' => null,
         ],
 
-        'radford' => [
-            'driver' => 'mysql',
-//            'host' => env('DB_HOST', '137.45.216.2'),
-            'host' => '137.45.261.2',
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'proj3'),
-            'username' => env('DB_USERNAME', 'proj3@localhost'),
-            'password' => env('DB_PASSWORD', 'wildcats'),
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-            'strict' => false,
-            'engine' => null,
-        ],
-
         //************************************************
         // This is the connection we use for production
         //************************************************
-        'production' => [
-            'driver' => 'mysql',
-            'host' => parse_url(getenv("DATABASE_URL"))['host'],
-            'database' => substr(parse_url(getenv("DATABASE_URL"))["path"], 1),
-            'username' => parse_url(getenv("DATABASE_URL"))["user"],
-            'password' => parse_url(getenv("DATABASE_URL"))["pass"],
-            'collation' => 'utf8_unicode_ci',
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-        ],
+//        'production' => [
+//            'driver' => 'mysql',
+//            'host' => parse_url(getenv("DATABASE_URL"))['host'],
+//            'database' => substr(parse_url(getenv("DATABASE_URL"))["path"], 1),
+//            'username' => parse_url(getenv("DATABASE_URL"))["user"],
+//            'password' => parse_url(getenv("DATABASE_URL"))["pass"],
+//            'collation' => 'utf8_unicode_ci',
+//            'charset' => 'utf8',
+//            'prefix' => '',
+//            'schema' => 'public',
+//        ],
         //************************************************
         //************************************************
 
