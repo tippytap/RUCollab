@@ -13,6 +13,7 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('message_id');
             $table->integer('user_id')->unsigned();
             $table->integer('group_id')->unsigned();
