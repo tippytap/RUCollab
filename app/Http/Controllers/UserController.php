@@ -27,21 +27,21 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function index(Request $request)
+    public function index(Request $request){
         if($request->user()->is_active){
-    {		
-		$user = $request->user();
-		$userId = $user->id;
-		$groups = [];
-		$tasks = [];
-		
-		foreach($user->membership as $group){
-			$group = Group::find($group->group_id);
-			$tasks = $this->getTasks($userId, $group->id);
-			$groups[] = $group;
-			$group->tasks = $tasks;
-		}
-		return view('userViews.index', ['groups'=>$groups]);		
+            $user = $request->user();
+            $userId = $user->id;
+            $groups = [];
+            $tasks = [];
+
+            foreach($user->membership as $group){
+                $group = Group::find($group->group_id);
+                $tasks = $this->getTasks($userId, $group->id);
+                $groups[] = $group;
+                $group->tasks = $tasks;
+            }
+            return view('userViews.index', ['groups'=>$groups]);
+        }
         else{
             Auth::logout();
             return redirect('/');
