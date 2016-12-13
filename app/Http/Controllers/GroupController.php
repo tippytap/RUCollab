@@ -122,8 +122,8 @@ class GroupController extends Controller
         $taskString = $request->input('task-string');
         $task = Task::create([
             'task_string' => $taskString,
-            'User' => '1',
-            'due_date' => $request->input('datetimepicker1')
+            'user' => $request->input('user-id'),
+            'due_date' => $request->input('datetimepicker4')
         ]);
 		
         return redirect('/dashboard');
