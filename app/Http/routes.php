@@ -39,6 +39,8 @@ Route::group(['middleware' => 'web'], function(){
 	
 	Route::get('/user_delete/', 'UserController@userDelete');
 
+    Route::put('/user_store/{userId}', 'UserController@userStore');
+
     Route::put('/user_destroy/{userId}', 'UserController@userDestroy');
 	
 	Route::get('/dashboard', 'UserController@index');
@@ -49,6 +51,7 @@ Route::group(['middleware' => 'web'], function(){
 
     Route::get('/emailTest', 'GroupController@email');
 
-    Route::get('/reactivate/{userName}', 'UserController@reactivateUser');
+    Route::get('/reactivate/{userEmail}', 'UserController@reactivateUser');
+    Route::get('/reactivate/', function(){ return redirect('/register'); });
 
 });

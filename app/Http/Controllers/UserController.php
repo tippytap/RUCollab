@@ -122,10 +122,24 @@ class UserController extends Controller
 		return redirect("/userEdit/$userID");
     }
 
-    public function reactivateUser($userName){
-        $user = User::where('name', $userName)->first();
+    public function reactivateUser($userEmail){
+        $user = User::where('email', $userEmail)->first();
         $user->is_active = true;
         $user->save();
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with([
+            "message" => "Account Reactivated! Please Log in."
+        ]);
+    }
+
+    public function userStore(Request $request, $userId){
+        $this->validate($request, [
+            'name' => 'present|max:255',
+            'phone' => 'present|max:10'
+        ]);
+        $user = User::find($userId);
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->save();
+        return redirect("/user_edit/$userId");
     }
 }

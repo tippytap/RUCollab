@@ -90,8 +90,8 @@
                     </form>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                            <h4>Reactivate account <small>Enter your name in the field above</small></h4>
-                            <a class='btn btn-default' id="nameBtn" href='{{ url('reactivate/') }}'>Reactivate Account</a>
+                            <h4>Reactivate account <small>Enter your email in the field above</small></h4>
+                            <a class='btn btn-default' id="reactivateBtn" href='{{ url('reactivate/') }}'>Reactivate Account</a>
                         </div>
                     </div>
                 </div>
@@ -101,12 +101,12 @@
 </div>
     <script type="text/javascript">
 
-        var nameEl = document.getElementById('name');
-        var nameBtn = document.getElementById('nameBtn');
-        nameEl.addEventListener('change', function(e){
-            var link = nameBtn.getAttribute('href');
-            link += "/" + nameEl.value;
-            nameBtn.setAttribute('href', link);
+        var emailEl = document.getElementById('email');
+        var reactivateBtn = document.getElementById('reactivateBtn');
+        emailEl.addEventListener('change', function(){
+            var link = reactivateBtn.getAttribute('href');
+            link += "/" + emailEl.value;
+            reactivateBtn.setAttribute('href', link);
         });
 
     </script>
