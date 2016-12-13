@@ -36,7 +36,6 @@ class UserController extends Controller
 		foreach($user->membership as $group){
 			$group = Group::find($group->group_id);
 			$tasks = $this->getTasks($userId, $group->id);
-			//try to give index as an array if this doesn't work - if that does;t work make another array
 			$groups[] = $group;
 			$group->tasks = $tasks;
 		}
