@@ -104,11 +104,10 @@ return [
         //************************************************
         'production' => [
             'driver' => 'pgsql',
-            'host' => 'postgres://vkiaorqzpeseit:44c7e449c50dcc484af3976add89dc8850737fba18f6d0e6290f157d0427cdaa@ec2-54-243-124-240.compute-1.amazonaws.com:5432/dbtqi6m0s741t2',
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => parse_url(getenv("DATABASE_URL"))['host'],
+            'database' => substr(parse_url(getenv("DATABASE_URL"))["path"], 1),
+            'username' => parse_url(getenv("DATABASE_URL"))["user"],
+            'password' => parse_url(getenv("DATABASE_URL"))["pass"],
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
