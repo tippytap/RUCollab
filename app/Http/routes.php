@@ -22,7 +22,7 @@ Route::group(['middleware' => 'web'], function(){
 
     Route::get('/group/create', 'GroupController@create');
     Route::post('/group', 'GroupController@store');
-    Route::delete('/group/{groupId}', 'GroupController@destroy');
+//    Route::delete('/group/{groupId}', 'GroupController@destroy');
     Route::put('/group/{groupId}', 'GroupController@update');
     Route::get('/group/{groupId}', 'GroupController@show');
     Route::get('/group/{groupId}/edit', 'GroupController@edit');

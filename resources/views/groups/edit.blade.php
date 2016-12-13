@@ -79,9 +79,9 @@
                             <button type="submit" class="btn btn-primary col-xs-12">
                                 <i class="fa fa-save fa-btn"></i>Update group
                             </button>
-                            <br/>
-                            <br/>
-                            <a href="{{ url('group/delete/' . $group->id) }}" class="col-xs-12 btn btn-danger">Delete Group</a>
+                            {{--<br/>--}}
+                            {{--<br/>--}}
+                            {{--<a href="{{ url('group/delete/' . $group->id) }}" class="col-xs-12 btn btn-danger">Delete Group</a>--}}
                     </div>
                 </div>
             </div>

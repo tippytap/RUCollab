@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <h4>Tasks</h4>
-                            <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
+                            {{--<p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>--}}
                         </div>
                         <form method="POST" action="{{ url('message') }}">
                             {!! csrf_field() !!}
@@ -37,9 +37,9 @@
                                         <div>
                                             <span>{{ $message['message_text'] }}</span>
                                             <br/>
-                                            <span>{{ $message['user'] }} on {{ $message['date'] }}</span>
+                                            <span><em><small>{{ $message['user'] }}</small></em></span>
+                                            <hr/>
                                         </div>
-                                        <br/>
                                     @endforeach
                                 </div>
                                 <div class="input-group">
