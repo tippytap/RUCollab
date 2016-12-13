@@ -55,7 +55,10 @@
                                     </div>
                                 </div>
                             </div>
+                            </form>
                             <div class="row">
+                                <form class="form" id="create-group" method="GET" action='{{ url("group/groupMemberEmail/$group->id/") }}'>
+                                {!! csrf_field() !!}
                                 <div class="col-xs-6">
                                     <label for="invite-1">Invite member: </label>
                                     <input class="form-control " type="text" id="invite-1" name="invite-1" placeholder="example@email.com" />
@@ -65,6 +68,7 @@
                                     <button id="invite-btn" class="col-xs-6 btn btn-default"><i class="fa fa-btn fa-send"></i>Send invitation</button>
                                 </div>
                                 <br/>
+                                </form>
                             </div>
                                 {{--<div class="col-xs-12">--}}
                                     {{--<button class="btn btn-default">--}}
@@ -78,7 +82,6 @@
                             <br/>
                             <br/>
                             <a href="{{ url('group/delete/' . $group->id) }}" class="col-xs-12 btn btn-danger">Delete Group</a>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -26,7 +26,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'erik'),
+//    'default' => env('DB_CONNECTION', 'erik'),
+    'default' => 'production',
 
     /*
     |--------------------------------------------------------------------------
@@ -82,6 +83,38 @@ return [
             'strict' => false,
             'engine' => null,
         ],
+
+        'radford' => [
+            'driver' => 'mysql',
+//            'host' => env('DB_HOST', '137.45.216.2'),
+            'host' => '137.45.261.2',
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'proj3'),
+            'username' => env('DB_USERNAME', 'proj3@localhost'),
+            'password' => env('DB_PASSWORD', 'wildcats'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
+        ],
+
+        //************************************************
+        // This is the connection we use for production
+        //************************************************
+        'production' => [
+            'driver' => 'pgsql',
+            'host' => 'postgres://vkiaorqzpeseit:44c7e449c50dcc484af3976add89dc8850737fba18f6d0e6290f157d0427cdaa@ec2-54-243-124-240.compute-1.amazonaws.com:5432/dbtqi6m0s741t2',
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+        ],
+        //************************************************
+        //************************************************
 
         'pgsql' => [
             'driver' => 'pgsql',
