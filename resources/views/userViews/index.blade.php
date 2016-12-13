@@ -7,21 +7,22 @@
             <div class="panel panel-default">
 					
                 <div class="panel-body">
-					<!--<div class="col-md-6">-->
+					
 						@foreach($groups as $group)
-							<table style="width:400px; height:250px; float:left; top:0; bottom:0; left:100; right:0; border:1px solid black">
+						<div class="col-md-6">
+							<table class="table table-bordered table-striped">
 								<tr>
-									<td><a href="{{ url('/group/' . $group->id) }}">{{$group->group_name}}</a></td>
+									<thead><a href="{{ url('/group/' . $group->id) }}">{{$group->group_name}}</a></thead>
 								</tr>
 								@foreach($group->tasks as $task)
 									<tr>
-										<td>
 										<td>{{ $task->task_string }}</td>
 									</tr>
 								@endforeach
 							</table>
+						</div>
 						@endforeach
-						<!--</div>-->
+					
                 </div>
             </div>
         </div>
