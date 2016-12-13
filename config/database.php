@@ -26,8 +26,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'erik'),
-//    'default' => 'production',
+//    'default' => env('DB_CONNECTION', 'erik'),
+    'default' => 'production',
 
     /*
     |--------------------------------------------------------------------------
@@ -87,17 +87,17 @@ return [
         //************************************************
         // This is the connection we use for production
         //************************************************
-//        'production' => [
-//            'driver' => 'mysql',
-//            'host' => parse_url(getenv("DATABASE_URL"))['host'],
-//            'database' => substr(parse_url(getenv("DATABASE_URL"))["path"], 1),
-//            'username' => parse_url(getenv("DATABASE_URL"))["user"],
-//            'password' => parse_url(getenv("DATABASE_URL"))["pass"],
-//            'collation' => 'utf8_unicode_ci',
-//            'charset' => 'utf8',
-//            'prefix' => '',
-//            'schema' => 'public',
-//        ],
+        'production' => [
+            'driver' => 'mysql',
+            'host' => parse_url(getenv("DATABASE_URL"))['host'],
+            'database' => substr(parse_url(getenv("DATABASE_URL"))["path"], 1),
+            'username' => parse_url(getenv("DATABASE_URL"))["user"],
+            'password' => parse_url(getenv("DATABASE_URL"))["pass"],
+            'collation' => 'utf8_unicode_ci',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+        ],
         //************************************************
         //************************************************
 
