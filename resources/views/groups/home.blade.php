@@ -25,16 +25,29 @@
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <h4>Tasks</h4>
+                            <hr/>
 							@foreach($groups as $g)
 								@if($g->id == $group->id)
-								<ul>
+								<div>
 									@foreach($g->tasks as $task)
-										<li>{{ $task->task_string }}</li>
+                                        <form action='{{ url("/group/taskComplete/$task->task_id/$group->id") }}' method="POST">
+                                            {!! csrf_field() !!}
+                                            <h5>
+                                                {{ $task->task_string }}
+                                                <button class="btn btn-link "><i class="text-success fa fa-btn fa-check"></i></button>
+                                                <br/>
+                                                <small>
+                                                    @foreach($task->users as $user)
+                                                    {{ $user }} &nbsp;
+                                                    @endforeach
+                                                </small>
+                                            </h5>
+                                        </form>
 									@endforeach
-								</ul>
+								</div>
 								@endif
 							@endforeach
-                            <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
+                            <p><a href='{{ url("/group/$group->id/edit") }}' class="btn btn-link"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
                         <form method="POST" action="{{ url('message') }}">
                             {!! csrf_field() !!}

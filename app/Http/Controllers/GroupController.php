@@ -94,13 +94,36 @@ class GroupController extends Controller
 		foreach($user->membership as $g){
 			$g = Group::find($g->group_id);
 			$tasks = $this->getTasks($userId, $group->id);
+            $tasks = $this->checkForRepeatedTasks($tasks);
 			$groups[] = $g;
 			$g->tasks = $tasks;
 		}
         return view('groups.home', ['group' => $group, 'members' => $members, 'groups' => $groups, 'messages' => $messages]);
     }
 
+    public function taskComplete(Request $request, $taskId, $groupId){
+        $task = Task::find($taskId);
+        $task->is_completed = true;
+        $task->save();
+        return redirect("/group/$groupId");
+    }
+
+    private function checkForRepeatedTasks($tasks){
+        $newTasks = $tasks;
+        $prev = "";
+        $i = 0;
+        foreach($newTasks as $task){
+            if($task->task_string === $prev && $i !== 0){
+                unset($newTasks[$i]);
+            }
+            $i++;
+            $prev = $task->task_string;
+        }
+        return $newTasks;
+    }
+
 	public function getTasks($userId, $groupId){
+        $tasks = [];
 		$task = DB::table('assignments')
 				->join('tasks', 'tasks.task_id', '=', 'assignments.task_id')
 				->select('assignments.group_id', 'tasks.task_id', 'tasks.task_string')
@@ -108,25 +131,43 @@ class GroupController extends Controller
 							["assignments.group_id", "=", $groupId],
 							["tasks.is_completed", "=", "false"]
 						])->get();
+        foreach($task as $t){
+            $assignment = Assignment::where('task_id', $t->task_id)->get();
+            $users = [];
+            foreach($assignment as $a){
+                $users[] = User::find($a->user_id)->name;
+            }
+            $t->users = $users;
+            $tasks[] = $t;
+        }
 		return $task;
 	}
 	
 	/**
-     * Store a newly created task resource in storage.
+     * Create a task and assign it to a user
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function taskstore(Request $request)
+    public function taskstore(Request $request, $groupId)
     {
+        $assignedMembers = $request->input('assigned');
         $taskString = $request->input('task-string');
+
         $task = Task::create([
             'task_string' => $taskString,
             'user' => $request->input('user-id'),
-            'due_date' => $request->input('datetimepicker4')
         ]);
-		
-        return redirect('/dashboard');
+
+        foreach($assignedMembers as $memberId){
+            Assignment::create([
+                'user_id' => $memberId,
+                'group_id' => $groupId,
+                'task_id' =>$task->task_id,
+            ]);
+        }
+
+        return redirect("/group/$groupId/edit");
     }
 	
     /**
@@ -200,6 +241,9 @@ class GroupController extends Controller
     }
 
     public function groupMemberEmail(Request $request, $groupId){
+        $this->validate($request, [
+            'invite-1' => 'required|max:255',
+        ]);
         $user = User::where('email', $request->input('invite-1'))->first();
         $group = Group::findOrFail($groupId);
         Mail::send('email.addMember', ['user' => $user, 'group' => $group], function ($mail) use ($user, $group){

@@ -124,9 +124,7 @@ class UserController extends Controller
         $user = User::where('email', $userEmail)->first();
         $user->is_active = true;
         $user->save();
-        return redirect('/dashboard')->with([
-            "message" => "Account Reactivated! Please Log in."
-        ]);
+        return redirect('/dashboard');
     }
 
     public function userStore(Request $request, $userId){
