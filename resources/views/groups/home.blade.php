@@ -29,7 +29,9 @@
 								@if($g->id == $group->id)
 								<ul>
 									@foreach($g->tasks as $task)
-										<li>{{ $task->task_string }}</li>
+										<li>
+                                            <p>{{ $task->task_string }}</p>
+                                        </li>
 									@endforeach
 								</ul>
 								@endif

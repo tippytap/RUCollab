@@ -29,26 +29,22 @@
                                     </div>
                                 </div>
                         </form>
-                        <form class="form" id="create-task" method="POST" action="{{ url('taskStore/' . $group->id) }}">
+                        <form class="form" id="create-task" method="POST" action="{{ url('/group/taskStore/' . $group->id) }}">
+                            {!! csrf_field() !!}
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="panel panel-default">
                                                 <div class="panel-heading">Tasks</div>
                                                 <div class="panel-body">
                                                     <p>Add task: </p>
                                                     <textarea class="form-control" id="task-string" name="task-string" placeholder="Task description"></textarea>
-                                                    {{--<br/>--}}
-                                                    {{--<p>Assign: </p>--}}
-                                                    {{--@foreach($members as $member)--}}
-                                                        {{--<button data-member="{{ $member->id }}" class="btn btn-default"><i class="fa fa-user fa-btn"></i>{{ $member->name }}</button>--}}
-                                                    {{--@endforeach--}}
-                                                    {{--<br/>--}}
-                                                    {{--<br/>--}}
-                                                    {{--<p>Due Date: </p>--}}
-                                                        {{--<div class="row">--}}
-                                                            {{--<div class='col-sm-12'>--}}
-                                                                {{--<input type='text' class="form-control" id='datetimepicker4' />--}}
-                                                            {{--</div>--}}
-                                                        {{--</div>--}}
+                                                    <br/>
+                                                    <p>Assign: </p>
+                                                    @foreach($members as $member)
+                                                        <button type="button" data-active="false" data-member="{{ $member->id }}" class="member btn btn-default"><i class="fa fa-user fa-btn"></i>{{ $member->name }}</button>
+                                                        <input type="checkbox" id="{{ $member->id }}" class="hidden" name="assigned[]" value="{{ $member->id }}"/>
+                                                    @endforeach
+                                                    <br/>
+                                                    <br/>
                                                     <div>
                                                         <br/>
                                                         <button type="submit" id="add-task" class="btn btn-info col-xs-12"><i class="fa fa-plus fa-btn"></i>Add Task</button>
@@ -74,4 +70,22 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        var members = document.getElementsByClassName('member');
+        for(var i = 0; i < members.length; i++){
+            var member = members[i];
+            member.addEventListener('click', function(e){
+                if(this.getAttribute('data-active') === 'false'){
+                    this.setAttribute('data-active', 'true');
+                    this.classList.add('active');
+                    document.getElementById(this.getAttribute('data-member')).setAttribute('checked', 'true');
+                }
+                else{
+                    this.setAttribute('data-active', 'false');
+                    this.classList.remove('active');
+                    document.getElementById(this.getAttribute('data-member')).setAttribute('checked', 'false');
+                }
+            });
+        }
+    </script>
 @endsection

@@ -112,20 +112,30 @@ class GroupController extends Controller
 	}
 	
 	/**
-     * Store a newly created task resource in storage.
+     * Create a task and assign it to a user
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function taskstore(Request $request, $groupId)
     {
+        $assignedMembers = $request->input('assigned');
         $taskString = $request->input('task-string');
+
         $task = Task::create([
             'task_string' => $taskString,
             'user' => $request->input('user-id'),
         ]);
-		
-        return redirect('/group/');
+
+        foreach($assignedMembers as $memberId){
+            Assignment::create([
+                'user_id' => $memberId,
+                'group_id' => $groupId,
+                'task_id' =>$task->id,
+            ]);
+        }
+
+        return redirect("/group/$groupId/edit");
     }
 	
     /**
