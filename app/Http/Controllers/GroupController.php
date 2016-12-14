@@ -199,6 +199,9 @@ class GroupController extends Controller
     }
 
     public function groupMemberEmail(Request $request, $groupId){
+        $this->validate($request, [
+            'invite-1' => 'required|max:255',
+        ]);
         $user = User::where('email', $request->input('invite-1'))->first();
         $group = Group::findOrFail($groupId);
         Mail::send('email.addMember', ['user' => $user, 'group' => $group], function ($mail) use ($user, $group){

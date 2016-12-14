@@ -34,7 +34,7 @@
 								</ul>
 								@endif
 							@endforeach
-                            <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
+                            <p><a href='{{ url("/group/$group->id/edit") }}' class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
                         <form method="POST" action="{{ url('message') }}">
                             {!! csrf_field() !!}
