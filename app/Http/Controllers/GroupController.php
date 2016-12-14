@@ -94,13 +94,29 @@ class GroupController extends Controller
 		foreach($user->membership as $g){
 			$g = Group::find($g->group_id);
 			$tasks = $this->getTasks($userId, $group->id);
+            $tasks = $this->checkForRepeatedTasks($tasks);
 			$groups[] = $g;
 			$g->tasks = $tasks;
 		}
         return view('groups.home', ['group' => $group, 'members' => $members, 'groups' => $groups, 'messages' => $messages]);
     }
 
+    private function checkForRepeatedTasks($tasks){
+        $newTasks = $tasks;
+        $prev = "";
+        $i = 0;
+        foreach($newTasks as $task){
+            if($task->task_string === $prev && $i !== 0){
+                unset($newTasks[$i]);
+            }
+            $i++;
+            $prev = $task->task_string;
+        }
+        return $newTasks;
+    }
+
 	public function getTasks($userId, $groupId){
+        $tasks = [];
 		$task = DB::table('assignments')
 				->join('tasks', 'tasks.task_id', '=', 'assignments.task_id')
 				->select('assignments.group_id', 'tasks.task_id', 'tasks.task_string')
@@ -115,6 +131,7 @@ class GroupController extends Controller
                 $users[] = User::find($a->user_id)->name;
             }
             $t->users = $users;
+            $tasks[] = $t;
         }
 		return $task;
 	}
