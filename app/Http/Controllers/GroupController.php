@@ -117,7 +117,7 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function taskstore(Request $request)
+    public function taskstore(Request $request, $groupId)
     {
         $taskString = $request->input('task-string');
         $task = Task::create([
@@ -126,7 +126,7 @@ class GroupController extends Controller
             'due_date' => $request->input('datetimepicker4')
         ]);
 		
-        return redirect('/dashboard');
+        return redirect('/group/');
     }
 	
     /**
