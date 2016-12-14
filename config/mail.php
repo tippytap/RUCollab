@@ -16,7 +16,8 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+//    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => 'smtp',
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+//    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => 'smtp.sendgrid.net',
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +44,8 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+//    'port' => env('MAIL_PORT', 587),
+    'port' => 587,
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +58,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'app60641946@heroku.com', 'name' => 'RUCollab'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +84,8 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+//    'username' => env('MAIL_USERNAME'),
+    'username' => 'app60641946@heroku.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +98,8 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+//    'password' => env('MAIL_PASSWORD'),
+    'password' => 'o58n3oti9342',
 
     /*
     |--------------------------------------------------------------------------
