@@ -108,6 +108,14 @@ class GroupController extends Controller
 							["assignments.group_id", "=", $groupId],
 							["tasks.is_completed", "=", "false"]
 						])->get();
+        foreach($task as $t){
+            $assignment = Assignment::where('task_id', $t->task_id)->get();
+            $users = [];
+            foreach($assignment as $a){
+                $users[] = User::find($a->user_id)->name;
+            }
+            $t->users = $users;
+        }
 		return $task;
 	}
 	

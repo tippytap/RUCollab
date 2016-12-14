@@ -27,16 +27,22 @@
                             <h4>Tasks</h4>
 							@foreach($groups as $g)
 								@if($g->id == $group->id)
-								<ul>
+								<div>
 									@foreach($g->tasks as $task)
-										<li>
-                                            <p>{{ $task->task_string }}</p>
-                                        </li>
+										<h5>
+                                            {{ $task->task_string }}
+                                            <br/>
+                                            <small>
+                                                @foreach($task->users as $user)
+                                                {{ $user }} &nbsp;
+                                                @endforeach
+                                            </small>
+                                        </h5>
 									@endforeach
-								</ul>
+								</div>
 								@endif
 							@endforeach
-                            <p><a href='{{ url("/group/$group->id/edit") }}' class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
+                            <p><a href='{{ url("/group/$group->id/edit") }}' class="btn btn-link"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
                         <form method="POST" action="{{ url('message') }}">
                             {!! csrf_field() !!}
