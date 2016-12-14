@@ -26,13 +26,13 @@
                         <div class="col-xs-12 col-md-4">
                             <h4>Tasks</h4>
 							@foreach($groups as $g)
-							@if($g->id == $group->id)
-							<ul>
-								@foreach($g->tasks as $task)
-									<li>{{ $task->task_string }}</li>
-								@endforeach
-							</ul>
-							@endif
+								@if($g->id == $group->id)
+								<ul>
+									@foreach($g->tasks as $task)
+										<li>{{ $task->task_string }}</li>
+									@endforeach
+								</ul>
+								@endif
 							@endforeach
                             <p><a href="#" class="btn btn-default"><i class="fa fa-plus fa-btn"></i>Create a task</a></p>
                         </div>
