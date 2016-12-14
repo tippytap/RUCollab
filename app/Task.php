@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillable = ['task_string', 'due_date'];
+    protected $fillable = ['task_string', 'due_date', 'is_completed'];
 
     public $timestamps = false;
 
@@ -19,5 +19,7 @@ class Task extends Model
 	public function membership(){
         return $this->hasMany('App\Membership');
     }
+
+    public $primaryKey = 'task_id';
 	
 }

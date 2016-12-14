@@ -101,6 +101,13 @@ class GroupController extends Controller
         return view('groups.home', ['group' => $group, 'members' => $members, 'groups' => $groups, 'messages' => $messages]);
     }
 
+    public function taskComplete(Request $request, $taskId, $groupId){
+        $task = Task::find($taskId);
+        $task->is_completed = true;
+        $task->save();
+        return redirect("/group/$groupId");
+    }
+
     private function checkForRepeatedTasks($tasks){
         $newTasks = $tasks;
         $prev = "";
@@ -156,7 +163,7 @@ class GroupController extends Controller
             Assignment::create([
                 'user_id' => $memberId,
                 'group_id' => $groupId,
-                'task_id' =>$task->id,
+                'task_id' =>$task->task_id,
             ]);
         }
 

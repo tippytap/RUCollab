@@ -12,7 +12,8 @@
                         <div class="col-md-6">
                             <table class="table table-bordered table-striped">
                                 <tr>
-                                    <thead><a href="{{ url('/group/' . $group->id) }}">{{$group->group_name}}</a></thead>
+                                    <thead><h3><a href="{{ url('/group/' . $group->id) }}">{{$group->group_name}}</a></h3></thead>
+                                    <hr/>
                                 </tr>
                                 @foreach($group->tasks as $task)
                                     <tr>

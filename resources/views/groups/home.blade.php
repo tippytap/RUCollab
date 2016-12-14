@@ -25,19 +25,24 @@
                         </div>
                         <div class="col-xs-12 col-md-4">
                             <h4>Tasks</h4>
+                            <hr/>
 							@foreach($groups as $g)
 								@if($g->id == $group->id)
 								<div>
 									@foreach($g->tasks as $task)
-										<h5>
-                                            {{ $task->task_string }}
-                                            <br/>
-                                            <small>
-                                                @foreach($task->users as $user)
-                                                {{ $user }} &nbsp;
-                                                @endforeach
-                                            </small>
-                                        </h5>
+                                        <form action='{{ url("/group/taskComplete/$task->task_id/$group->id") }}' method="POST">
+                                            {!! csrf_field() !!}
+                                            <h5>
+                                                {{ $task->task_string }}
+                                                <button class="btn btn-link "><i class="text-success fa fa-btn fa-check"></i></button>
+                                                <br/>
+                                                <small>
+                                                    @foreach($task->users as $user)
+                                                    {{ $user }} &nbsp;
+                                                    @endforeach
+                                                </small>
+                                            </h5>
+                                        </form>
 									@endforeach
 								</div>
 								@endif
