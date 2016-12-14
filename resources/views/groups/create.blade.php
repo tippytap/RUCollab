@@ -21,8 +21,8 @@
                                     <br/>
                                 </div>
                                 <div class="col-xs-12">
-                                    <label for="description">Group's purpose: </label>
-                                    <textarea class="form-control" id="description" name="description"></textarea>
+                                    <label for="purpose">Group's purpose: </label>
+                                    <textarea class="form-control" id="purpose" name="purpose"></textarea>
                                     <br/>
                                 </div>
                             </div>

@@ -12,9 +12,11 @@ class Assignment extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'task_id', 'group_id'];
-		
-		
+        'user_id', 'task_id', 'group_id'
+    ];
+
+    public $timestamps = false;
+
 	public function membership(){
 		return $this->hasMany('App\Membership');
 	}
