@@ -123,7 +123,6 @@ class GroupController extends Controller
         $task = Task::create([
             'task_string' => $taskString,
             'user' => $request->input('user-id'),
-            'due_date' => $request->input('datetimepicker4')
         ]);
 		
         return redirect('/group/');
